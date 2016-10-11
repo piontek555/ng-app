@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ngApp</title>
+  <style scr='./main.css'></style>
+  <script src="../node_modules/angular/angular.js"></script>
+</head>
+
+
+<body>
+  <h1>Gaming stats</h1>
+
+  <div ng-controller="mainController">
+    <form ng-submit="formSubmit()">
+      <div class="f-form">
+        <div class="f-field">
+          <label for="title" class="f-field__label">title</label>
+          <input type="text" class="f-field__controles" ng-model="gameTitle" id="title">
+        </div>
+        <div class="f-field">
+          <label for="title" class="f-field__label">platform</label>
+          <input type="text" class="f-field__controles" ng-model="gamePlatform" id="platform">
+        </div>
+
+          <div class="f-field">
+            <label for="title" class="f-field__label">completions</label>
+            <input type="text" ng-model="gameCompletion" id="completions">
+            <!-- <input type="text" class="f-field__controles" ng-model="completionsList" id="completions"> -->
+            <ul>
+              <li ng-repeat="completion in completionsList">
+                <span>{{$index+1}}. {{completionsList[$index]}}</span>
+                <!-- <button ng-click="removeEl($index)">remove</button> -->
+              </li>
+            </ul>
+            <a href="#" ng-click="addCompletion()">Add completion</a>
+          </div>
+        <button type="submit">Add game</button>
+      </div>
+    </form>
+    <div ng-if="gameList.length">
+      <h3>List of games</h3>
+      <ul>
+        <li ng-repeat="game in gameList">
+          <!-- <span ng-class="{done: todo.done}">{{$index+1}}. {{todo.text}}</span> -->
+          <!-- <button ng-click="removeEl($index)">remove</button> -->
+          <span>{{game.id}}</span>
+          <span>{{game.title}}</span>
+          <span>{{game.platform}}</span>
+          <!-- <span>{{game.completions}}</span> -->
+          <div ng-if="game.completions.length">
+            <h4>completion</h4>
+            <ul>
+              <li ng-repeat="completion in game.completions">
+                <span>{{$index+1}}. {{game.completions[$index]}}</span>
+              </li>
+            </ul>
+          </div>
+          <button ng-click="removeEl($index)">remove</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+ <!--  <form ng-submit="formSubmit()">
+    <input type="text" ng-model="todoText" required>
+    <button type="submit">Save</button>
+    <div ng-if="gameList.length">
+      <p>Super ekstra lista:</p>
+      <ul>
+        <li ng-repeat="games in gameList">
+          <input type="checkbox" ng-model="todo.done">
+          <span ng-class="{done: todo.done}">{{$index+1}}. {{todo.text}}</span>
+          <button ng-click="removeEl($index)">remove</button>
+        </li>
+      </ul>
+    </div>
+  </form> -->
+
+  <script src="app/app.js"></script>
+</body>
+
+</html>
+

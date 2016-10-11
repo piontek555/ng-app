@@ -1,0 +1,29 @@
+[
+	{
+		id: '1',
+		title: 'Tomb Raider',
+		platform: 'ps3',
+		completions: ['2014-2015'],
+		details: 'Jakiś dodatkowy opis czy coś',
+		bestResults: '95%',
+		coverImg: '../img/tomb_raider.jpg',
+		// Future features
+	},
+	{	id: '2',
+		title: 'Metal Gear Solid: 4',
+		platform: 'ps3',
+		completions: ['2013', '2016-xxxx'],
+		details: 'Jakiś dodatkowy opis czy coś',
+		bestResults: 95,
+		coverImg: '../img/mgs4.jpg',
+	},
+	{
+		id: '3',
+		title: 'Rise of the Tomb Raider',
+		platform: 'xBox One',
+		completions: ['2016-xxxx'],
+		details: 'Jakiś dodatkowy opis czy coś',
+		bestResults: 18,
+		coverImg: '../img/rise_of_the_tomb_raider.jpg',
+	}
+]
