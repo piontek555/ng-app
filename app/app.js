@@ -7,13 +7,11 @@
   function mainController($scope) {
     $scope.gameList = [
     	{
-			id: '1',
 			title: 'Tomb Raider',
 			platform: 'ps3',
 			completions: ['2014-2015', '2016'],
 		  },
       {
-      id: '2',
       title: 'Metal Gear Solid: 4',
       platform: 'ps3',
       completions: ['2013', '2016-xxxx'],
@@ -26,13 +24,12 @@
     $scope.gamePlatform = "";
     $scope.completionsList = [];
 
+
     function formSubmit() {
       $scope.gameList.push({
         title: $scope.gameTitle,
         platform: $scope.gamePlatform,
-        completions: [$scope.completionsList]
-        // done: false,
-        // date: new Date()
+        completions: $scope.completionsList
       });
       console.log($scope.gameList);
       $scope.gameTitle = '';
@@ -40,6 +37,7 @@
     	$scope.gameCompletion = ''
     	$scope.completionsList = [];
     }
+
     function addCompletion() {
     	$scope.completionsList.push(
   			$scope.gameCompletion
@@ -48,14 +46,8 @@
     	console.log($scope.completionsList);
     }
 
-    // function computeNeeded() {
-    //   $scope.needed = $scope.startingEstimate * 10;
-    // }
-
-    function removeEl(idx) {
-      $scope.gameList.splice(idx, 1);
+    function removeEl(arrayName, idx) {
+      arrayName.splice(idx, 1);
     }
-
   }
-
 })();

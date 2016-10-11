@@ -27,11 +27,10 @@
           <div class="f-field">
             <label for="title" class="f-field__label">completions</label>
             <input type="text" ng-model="gameCompletion" id="completions">
-            <!-- <input type="text" class="f-field__controles" ng-model="completionsList" id="completions"> -->
             <ul>
               <li ng-repeat="completion in completionsList">
                 <span>{{$index+1}}. {{completionsList[$index]}}</span>
-                <!-- <button ng-click="removeEl($index)">remove</button> -->
+                <button ng-click="removeEl(completionsList, $index)">remove</button>
               </li>
             </ul>
             <a href="#" ng-click="addCompletion()">Add completion</a>
@@ -43,42 +42,22 @@
       <h3>List of games</h3>
       <ul>
         <li ng-repeat="game in gameList">
-          <!-- <span ng-class="{done: todo.done}">{{$index+1}}. {{todo.text}}</span> -->
-          <!-- <button ng-click="removeEl($index)">remove</button> -->
-          <span>{{game.id}}</span>
+          <span>{{$index+1}}</span>
           <span>{{game.title}}</span>
           <span>{{game.platform}}</span>
-          <!-- <span>{{game.completions}}</span> -->
           <div ng-if="game.completions.length">
-            <h4>completion</h4>
+            <h4>completions</h4>
             <ul>
               <li ng-repeat="completion in game.completions">
                 <span>{{$index+1}}. {{game.completions[$index]}}</span>
               </li>
             </ul>
           </div>
-          <button ng-click="removeEl($index)">remove</button>
+          <button ng-click="removeEl(gameList, $index)">remove</button>
         </li>
       </ul>
     </div>
   </div>
-
-
- <!--  <form ng-submit="formSubmit()">
-    <input type="text" ng-model="todoText" required>
-    <button type="submit">Save</button>
-    <div ng-if="gameList.length">
-      <p>Super ekstra lista:</p>
-      <ul>
-        <li ng-repeat="games in gameList">
-          <input type="checkbox" ng-model="todo.done">
-          <span ng-class="{done: todo.done}">{{$index+1}}. {{todo.text}}</span>
-          <button ng-click="removeEl($index)">remove</button>
-        </li>
-      </ul>
-    </div>
-  </form> -->
-
   <script src="app/app.js"></script>
 </body>
 
