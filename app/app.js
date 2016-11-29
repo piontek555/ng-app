@@ -17,20 +17,33 @@
       completions: ['2013', '2016-xxxx'],
       },
 	 ];
-    $scope.formSubmit = formSubmit;
+   $scope.gamePlatformsOptions = ['please choose a platform', 'psx', 'ps2', 'Add new platform'];
+    // $scope.formSubmit = formSubmit;
     $scope.addCompletion = addCompletion;
     $scope.removeEl = removeEl;
-    $scope.gameTitle = "";
-    $scope.gamePlatform = "";
+    $scope.addNewPlatform = addNewPlatform;
+    $scope.gameTitle = '';
+    $scope.gamePlatform = 'psx';
     $scope.completionsList = [];
 
+    $scope.validMessage = {
+      validRequired: 'Please fill required field'
+    };
 
-    function formSubmit() {
+    $scope.formSubmit = function () {
+      if(!$scope.gameForm.$invalid) {
+        alert('Great! Game has been added!');
+        $scope.reset(gameForm);
+      } else {
+        return
+      }
+
       $scope.gameList.push({
         title: $scope.gameTitle,
         platform: $scope.gamePlatform,
         completions: $scope.completionsList
       });
+
       console.log($scope.gameList);
       $scope.gameTitle = '';
     	$scope.gamePlatform = '';
@@ -38,16 +51,27 @@
     	$scope.completionsList = [];
     }
 
+    //rest form
+    $scope.reset = function(thisForm) {
+      console.log('forms');
+      console.log(thisForm);
+      console.log(gameForm);
+        $scope.gameForm.$setPristine();
+        $scope.gameForm.$setUntouched();
+    }
+
     function addCompletion() {
-    	$scope.completionsList.push(
-  			$scope.gameCompletion
-  		);
+    	$scope.completionsList.push($scope.gameCompletion);
     	$scope.gameCompletion = '';
     	console.log($scope.completionsList);
     }
 
     function removeEl(arrayName, idx) {
       arrayName.splice(idx, 1);
+    }
+    function addNewPlatform () {
+      $scope.gamePlatformsOptions.push($scope.newPlatform);
+      $scope.gamePlatform = $scope.newPlatform;
     }
   }
 })();

@@ -16,18 +16,38 @@
 
 
     <div ng-controller="mainController">
-      <form ng-submit="formSubmit()" class="form-horizontal">
+      <form name="gameForm" ng-submit="formSubmit()" class="form-horizontal" novalidate>
         <div class="form-group">
           <label for="title" class="col-sm-2 control-label">title</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="gameTitle" id="title" >
+            <input type="text" class="form-control" name="gameTitle" ng-model="gameTitle" id="title" required>
+          </div>
+          <div ng-show="gameForm.$submitted || gameForm.gameTitle.$touched">
+            <div ng-show="gameForm.gameTitle.$invalid" class="alert alert-danger">
+              <span>{{validMessage.validRequired}}</span>
+            </div>
           </div>
         </div>
         <div class="form-group">
           <label for="platform" class="col-sm-2 control-label">platform</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="gamePlatform" id="platform" >
+            <!-- <input type="text" class="form-control" ng-model="gamePlatform" id="platform" > -->
+            <select id="platform" ng-model="gamePlatform">
+              <option ng-repeat="option in gamePlatformsOptions">{{option}}</option>
+            </select>
           </div>
+          <div ng-show="gamePlatform === 'Add new platform'">
+            <label for="newPlatform" class="col-sm-2 control-label">Add new Platform</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="newPlatform" ng-model="newPlatform" id="newPlatform" required>
+            </div>
+            <a href="#" ng-click="addNewPlatform()" class="btn btn-primary pull-right">Add New Platform</a>
+          </div>
+          <!-- <div ng-show="gameForm.$submitted || gameForm.gamePlatform.$touched">
+            <div ng-show="gameForm.gamePlatform.$invalid || " class="alert alert-danger">
+              <span>{{validMessage.validRequired}}</span>
+            </div>
+          </div> -->
         </div>
         <div class="form-group">
           <label for="completions" class="col-sm-2 control-label">completions</label>
