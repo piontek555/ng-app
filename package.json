@@ -4,8 +4,16 @@
   "description": "Ng hobby app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --progress --watch"
   },
   "author": "Pro Code",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular-route": "^1.5.9"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "webpack": "^1.14.0"
+  }
 }

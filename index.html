@@ -7,99 +7,28 @@
   <link rel="stylesheet" href="./main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-route/angular-route.js"></script>
 </head>
 
 
 <body>
-  <div class="inner">
-    <h1>Gaming stats</h1>
+  <nav>
+    <ul>
+      <li class="nav__item">
+        <a href="#/">Home</a>
+      </li>
+      <li class="nav__item">
+        <a href="#/gamedetails">Details</a>
+      </li>
+    </ul>
+  </nav>
+  <div ng-view></div>
 
 
-    <div ng-controller="mainController">
-      <form name="gameForm" ng-submit="formSubmit()" class="form-horizontal" novalidate>
-        <div class="form-group">
-          <label for="title" class="col-sm-2 control-label">title</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="gameTitle" ng-model="gameTitle" id="title" required>
-          </div>
-          <div ng-show="gameForm.$submitted || gameForm.gameTitle.$touched">
-            <div ng-show="gameForm.gameTitle.$invalid" class="alert alert-danger">
-              <span>{{validMessage.validRequired}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="platform" class="col-sm-2 control-label">platform</label>
-          <div class="col-sm-10">
-            <!-- <input type="text" class="form-control" ng-model="gamePlatform" id="platform" > -->
-            <select id="platform" ng-model="gamePlatform">
-              <option ng-repeat="option in gamePlatformsOptions">{{option}}</option>
-            </select>
-          </div>
-          <div ng-show="gamePlatform === 'Add new platform'">
-            <label for="newPlatform" class="col-sm-2 control-label">Add new Platform</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="newPlatform" ng-model="newPlatform" id="newPlatform" required>
-            </div>
-            <a href="#" ng-click="addNewPlatform()" class="btn btn-primary pull-right">Add New Platform</a>
-          </div>
-          <!-- <div ng-show="gameForm.$submitted || gameForm.gamePlatform.$touched">
-            <div ng-show="gameForm.gamePlatform.$invalid || " class="alert alert-danger">
-              <span>{{validMessage.validRequired}}</span>
-            </div>
-          </div> -->
-        </div>
-        <div class="form-group">
-          <label for="completions" class="col-sm-2 control-label">completions</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="gameCompletion" id="completions" >
-          </div>
-          <a href="#" ng-click="addCompletion()" class="btn btn-primary pull-right">Add game completion</a>
-          <ul class="list-unstyled">
-            <li ng-repeat="completion in completionsList">
-              <div class="row">
-                <h4 class="col-sm-10">{{$index+1}}. {{completionsList[$index]}}</h4>
-                <button ng-click="removeEl(completionsList, $index)" class="btn btn-danger btn-sm col-sm-2">remove</button>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <button type="submit" class="btn btn-success btn-block">Add game</button>
-      </form>
-      <div ng-if="gameList.length">
-        <h3>List of games</h3>
-        <ul class="list-unstyled">
-          <li ng-repeat="game in gameList">
-            <div class="row">
-              <div class="col-sm-1">
-                <h4>{{$index+1}}</h4>
-              </div>
-              <div class="col-sm-5">
-                <h4>{{game.title}}</h4>
-              </div>
-              <div class="col-sm-1">
-                <h4>{{game.platform}}</h4>
-              </div>
-              <div class="col-sm-3">
-                <div ng-if="game.completions.length">
-                  <h5>completions</h5>
-                  <ul class="list-unstyled">
-                    <li ng-repeat="completion in game.completions">
-                      <h5>{{$index+1}}. {{game.completions[$index]}}</h5>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-2 text-right">
-                <button ng-click="removeEl(gameList, $index)" class="btn btn-danger btn-sm">remove</button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
   <script src="app/app.js"></script>
+  <script src="app/game.service.js"></script>
+  <script src="app/app.controller.js"></script>
+  <script src="app/gamedetails.controller.js"></script>
 </body>
 
 </html>
