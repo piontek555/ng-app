@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-1">
+    <h4>{{idx+1}}</h4>
+  </div>
+  <div class="col-sm-5">
+    <h4>{{game.title}}</h4>
+  </div>
+  <div class="col-sm-1">
+    <h4>{{game.platform}}</h4>
+  </div>
+  <div class="col-sm-3">
+    <div ng-if="game.completions.length">
+      <h5>completions</h5>
+      <ul class="list-unstyled">
+        <li ng-repeat="completion in game.completions">
+          <h5>{{$index+1}}. {{game.completions[$index]}}</h5>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-2 text-right">
+    <a href="#/" ng-click="removeEl(idx)" class="btn btn-danger btn-sm">remove</a>
+  </div>
+</div>
